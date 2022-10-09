@@ -1,0 +1,7 @@
+{
+"mongoURI": "mongodb+srv://nicolabazzolo:Metrjam113.113mongodb@merncluster.5ep9dci.mongodb.net/?retryWrites=true&w=majority",
+"owner" : "nicola bazzolo",
+"jwtSecret" : "MetrbxxnclmNod346765464"
+}
+
+
