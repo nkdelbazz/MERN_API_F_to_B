@@ -1,15 +1,25 @@
 const express = require('express'); // vado a chiamare il pacchetto di express
 const connectDB = require('./config/db')
+const cors = require('cors');
 
 const app = express(); // inizializzo l' app con il pacchetto 
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 
 connectDB();
 
+
+app.use(cors());
+app.options('*', cors());
 // Init Middleware
 app.use(express.json({ extended: false}))  // json 
 
 app.get('/', (req, res) => res.send('API Running per mern_app'));
+app.get('/client', (req, res) => res.json('collegamento al server fatto'));
 
+
+app.post('/', (req, res) => res.json(req.body));
 // define routes
 /*
 verranno impostate in questo modo se non si importa in questo modo una rotta

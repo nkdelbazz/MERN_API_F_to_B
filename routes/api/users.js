@@ -10,7 +10,7 @@ const config = require('config');
 // @desc  Test route 
 // @access public
 
-router.get('/', (req,res) => res.send('User route')) // è una route che viene generat con il nome del file + '/' 
+router.get('/', (req,res) => res.send('metodo get')) // è una route che viene generat con il nome del file + '/' 
 
 router.post(
     '/',
@@ -24,7 +24,8 @@ router.post(
       console.log(req.body); //
       const errors = validationResult(req) 
       if(!errors.isEmpty()){
-        return res.status(400).json({errors: errors.array()})
+       // return  res.status(400).json({errors: errors.array()})
+       return  res.status(400).json({msg:errors})
       }
 
       const {name , email , password} = req.body  // prendi il json e mettilo dentro qui 
@@ -32,7 +33,7 @@ router.post(
       try{
         let user = await User.findOne({email}) // presa da sopra 
         if(user){
-            res.status(400).json({errors: [{message: 'user esiste già'}]})
+           return  res.status(400).json({errors: [{message: 'user esiste già'}]})
         }
 
         const avatar = gravatar.url(email,{
@@ -69,6 +70,7 @@ router.post(
 
                  });
 
+       console.log('user aggiunto')           
       }
       catch(err){
         console.error(err.message);

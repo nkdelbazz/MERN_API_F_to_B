@@ -46,14 +46,14 @@ router.post(
     try{
       let user = await User.findOne({email}) // presa da sopra 
       if(!user){
-          res.status(400).json({errors: [{message: 'le credenziali non sono valide user non trovato'}]})
+        return  res.status(400).json({errors: [{message: 'le credenziali non sono valide user non trovato'}]})
       }
 
       // compara la password non criptata in input con la password criptata del database
       const isMatch = await bcrypt.compare(password, user.password)
 
       if(!isMatch){
-        res.status(400).json({errors: [{message: 'le credenziali non sono valide non cè stato il match'+ user.password}]})
+       return  res.status(400).json({errors: [{message: 'le credenziali non sono valide non cè stato il match'}]})
       }
 
       const payload = {
@@ -68,14 +68,14 @@ router.post(
                {expiresIn: 360000},
                (err,token) => {
                 if(err) throw err;
-                res.json({token});
+              return  res.json({token});
 
                });
 
     }
     catch(err){
       console.error(err.message);
-      res.status(500).send("server error")
+     return res.status(500).send("server error")
 
     }
     // vedere se l user esiste 
