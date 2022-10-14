@@ -30,6 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment-timezone": "^0.5.37",
     "moongose": "^1.0.0",
+    "react-scripts": "^5.0.1",
     "request": "^2.88.2"
   },
   "devDependencies": {
