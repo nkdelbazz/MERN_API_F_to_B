@@ -3,8 +3,16 @@ import Test from'./components/Test';
 import { useState } from 'react';
 import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom'; 
 import axios from 'axios';
+import {useSelector} from 'react-redux'  // redux
+
 
 function App() {
+
+  // redux ---------------
+  const state = useSelector((state) => state);
+  console.log(state)
+
+
  /*
 axios.get('http://localhost:5000/client').then((resp) => {
                    console.log(resp.data)
