@@ -3,14 +3,22 @@ import Test from'./components/Test';
 import { useState } from 'react';
 import {BrowserRouter as Router,Route,Switch,Link} from 'react-router-dom'; 
 import axios from 'axios';
-import {useSelector} from 'react-redux'  // redux
+import {useSelector,useDispatch} from 'react-redux'  // redux
+import { bindActionCreators } from 'redux';
+import {actionCreators} from "./state/index"
 
 
 function App() {
 
   // redux ---------------
   const state = useSelector((state) => state);
-  console.log(state)
+  const dispatch = useDispatch();
+
+  const {depositMoney,withdrawmoney} = bindActionCreators(actionCreators,dispatch);
+  // reduz
+
+  console.log(state)  // cioè dello store dove si storicizza il tutto
+
 
 
  /*
@@ -156,6 +164,18 @@ async function infoUtente(e) {
 }
 
 
+// redux 
+async function addStore(e){
+  e.preventDefault();
+  depositMoney(100)
+}
+
+async function subStore(e){
+  e.preventDefault();
+  withdrawmoney(100)
+}
+
+
 
             
   const [name, setName] = useState("");
@@ -230,8 +250,25 @@ async function infoUtente(e) {
       info token token
       </button>
 
+      <br></br>
+      <br></br>
+
       <button onClick={infoUtente}>
       info sull' utente
+      </button>
+
+      <br></br>
+      <br></br>
+      <br></br>
+
+<div>   REDUX </div>
+<br></br>
+      <button onClick={addStore}>
+       + 100 store
+      </button>
+
+      <button onClick={subStore}>
+       - 100 store
       </button>
 
       <br></br>
